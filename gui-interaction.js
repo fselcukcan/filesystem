@@ -1,4 +1,4 @@
-import { openFileButton, saveFileButton, textarea, pre } from "./gui.js";
+import { openFileButton, saveFileButton, textarea } from "./gui.js";
 import { readFile, writeFile } from "./filesystem.js";
 
 openFileButton.addEventListener('click', showFileContent)
@@ -7,7 +7,6 @@ saveFileButton.addEventListener('click', () => writeFileContent(textarea.value))
 async function showFileContent() {
   const content = await readFile()
   textarea.value = content
-  pre.textContent = content
 }
 
 async function writeFileContent(data) {
