@@ -1,3 +1,5 @@
 export const openFileButton = document.querySelector("#open-file-button")
 export const saveFileButton = document.querySelector("#save-file-button")
 export const textarea = document.querySelector("textarea")
+export const openDirButton = document.querySelector("#open-dir-button")
+export const newFileButton = document.querySelector("#new-file-button")
