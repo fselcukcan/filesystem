@@ -44,3 +44,31 @@ export async function writeFile(data) {
   // await response.body.pipeTo(writable);
   return fileHandle
 }
+
+export async function openDir() {
+  const dirHandle = await window.showDirectoryPicker()
+  for await (const entry of dirHandle.values()) {
+    console.log(entry.kind, entry.name)
+  }
+  return dirHandle
+}
+
+export async function createNewFileHandleInDir(dirHandle, fileName, { create = true }) {
+  const fileHandle = await dirHandle.getFileHandle(fileName, { create })
+  return fileHandle
+}
+
+export async function createNewDirHandleInDir(dirHandle, dirName, { create = true }) {
+  const newDirHandle = await dirHandle.getDirectoryHandle(dirName, { create })
+  return newDirHandle
+}
+
+export async function removeFromDir(dirHandle, fileOrDirName, { recursive = false }) {
+  return await dirHandle.removeEntry(fileOrDirName, { recursive })
+}
+
+// resolves the file handle to a file name array ["Documents", "my-document.org"]
+export async function resolveFileHandleInDir(dirHandle, fileHandle) {
+  const path = await dirHandle.resolve(fileHandle)
+  return path
+}
